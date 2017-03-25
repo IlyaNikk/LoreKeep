@@ -5,12 +5,12 @@ const webpack = require('webpack');
 const HtmlPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.export = {
+module.exports = {
 	entry: [
 		'./public/main.js'
 	],
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: './dist',
 		filename: path.join('assets', 'js', 'bundle.js'),
 		publicPath: '/'
 	},
@@ -21,7 +21,7 @@ module.export = {
 				exclude: /(node_modules)/,
 				loader: 'babel-loader',
 				query: {
-					presets: ['latest']
+					presets: ['env']
 				}
 			},
 			{
