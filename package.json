@@ -1,0 +1,27 @@
+{
+  "name": "LoreKeep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": "7.5.0"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.*"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.15",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "0.25.0",
+    "html-webpack-plugin": "^2.28.0",
+    "webpack": "^2.2.1"
+  }
+}
