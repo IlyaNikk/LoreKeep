@@ -1,0 +1,32 @@
+.link {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	border-style: solid;
+	border-width: 0 0 0 0;
+	border-bottom-width: .1em;
+	height: 6em;
+	padding-left: 5%;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
+
+.link_border {
+	border-left-width: .1em;
+}
+
+.link__title{
+	margin-top: .2em;
+	margin-bottom: .2em;
+}
+
+.link__description{
+	margin-top: .2em;
+	margin-bottom: .2em;
+}
+
+.link__link{
+	margin-top: .2em;
+	margin-bottom: .2em;
+}

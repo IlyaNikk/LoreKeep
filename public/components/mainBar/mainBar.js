@@ -1,13 +1,21 @@
 'use strict';
 
 import Block from '../block/block';
+import './mainBar.css';
 
 export default class MainBar extends Block{
+
+	/**
+	 * Main bar constructor
+	 */
 	constructor(){
 		super('header', {});
 		this.setElements();
 	}
 
+	/**
+	 * Creating main bar
+	 */
 	setElements(){
 		let headerTitle = new Block('h1');
 		headerTitle.get().classList.add('header__title');
@@ -26,8 +34,7 @@ export default class MainBar extends Block{
 		button.get().classList.add('search-form__button');
 		form.get().appendChild(input.get());
 		form.get().appendChild(button.get());
-
-
+		
 		this.get().appendChild(headerTitle.get());
 		this.get().appendChild(form.get());
 	}

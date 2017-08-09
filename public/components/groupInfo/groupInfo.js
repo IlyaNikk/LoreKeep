@@ -1,17 +1,31 @@
 'use strict';
 
 import Block from '../block/block';
-import LinkInfo from '../linkInfo/linkInfo';
 import LinkGroup from '../linkGroup/linkGroup';
+import './groupInfo.css';
 
 export default class GroupInfo extends Block {
+
+	/**
+	 * Topics constructor
+	 */
 	constructor() {
 		super('section', {});
 		this.get().classList.add('links-group');
-		this.createGroup();
+		// let allStyles = document.styleSheets[0].cssRules;
+		// Object.keys(allStyles).forEach( (rule, count) =>{
+		// 	if(allStyles[rule].name === 'content_appear'){
+		// 		this.animationPosition = count;
+		// 	}
+		// });
+		// console.log(this.animationPosition);
+		this.renderTopics();
 	}
 
-	createGroup() {
+	/**
+	 * Creating topics without more information about them
+	 */
+	renderTopics() {
 		for (let i = 0; i < 3; ++i) {
 			let divBlock = new Block('div', {});
 			let insideBlock = new Block('div', {});
@@ -46,35 +60,57 @@ export default class GroupInfo extends Block {
 
 	}
 
-	listAppear(divBlock) {
+	/**
+	 * Setting event listeners on topic to appear more information
+	 * @param divTopic - topic, on which we set listener
+	 */
+	listAppear(divTopic) {
 		let triangle = new Block('span', {});
 		triangle.get().classList.add('triangle-up');
 
-		divBlock.get().addEventListener('click', () => {
+		divTopic.get().addEventListener('click', () => {
 			event.preventDefault();
-			let array = document.getElementsByClassName('links-content');
-			if (array.length === 1) {
-				if (array[0].style.animationName !== "link_appear") {
-					array[0].addEventListener('animationend', e => {
-						e.preventDefault();
-						console.log(e.animationName);
-						array[0].parentNode.removeChild(array[0]);
-						let oldTriangle = document.getElementsByClassName('triangle-up');
-						oldTriangle[0].parentNode.removeChild(oldTriangle[0]);
-						divBlock.get().appendChild(triangle.get());
-						this.get().parentNode.appendChild(new LinkGroup().getLinkGroup());
-					}, false);
-					let appearBlock = document.getElementsByClassName('links-group_appear');
-					appearBlock[0].classList.add('links-group_disappear');
-					appearBlock[0].classList.remove('links-group_appear');
+			let array = document.body.getElementsByClassName('links-content');
+			if (array.length > 0) {
+				if (array[0].firstChild && array[0].firstChild.className.indexOf('links-group_appear') !== -1) {
+					console.log(array[0]);
+					setTimeout(() => {
+						this.replaceList(array[0], divTopic, triangle);
+					}, 1000);
+				} else {
+					this.replaceList(array[0],divTopic, triangle);
 				}
-			}
-			else {
-				divBlock.get().appendChild(triangle.get());
-				this.get().parentNode.appendChild(new LinkGroup().getLinkGroup());
+			} else {
+				divTopic.get().appendChild(triangle.get());
+				this.get().parentNode.appendChild(new LinkGroup().get());
+				console.log(new LinkGroup().get());
 			}
 
 		});
 
+	}
+
+	/**
+	 * Replacing old list of links with new one
+	 * @param oldList - old list of links
+	 * @param divTopic - topic of links
+	 * @param triangle - pointer to topic
+	 */
+	replaceList(oldList, divTopic, triangle){
+		oldList.firstChild.classList.add('links-group_disappear');
+		oldList.addEventListener('animationend', e => {
+			let oldGroup = document.getElementsByClassName('links-content');
+			oldGroup[0].parentNode.removeChild(oldGroup[0]);
+			let oldTriangle = document.getElementsByClassName('triangle-up');
+			oldTriangle[0].parentNode.removeChild(oldTriangle[0]);
+			divTopic.get().appendChild(triangle.get());
+			this.get().parentNode.appendChild(new LinkGroup().get());
+		});
+		setTimeout(() => {
+			let columns = document.getElementsByClassName('content-column');
+			for (let i = 0; i < columns.length; ++i) {
+				columns[i].style.opacity = 0;
+			}
+		}, 500)
 	}
 }

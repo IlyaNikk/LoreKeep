@@ -1,10 +1,13 @@
 'use strict';
 
-import Block from '../components/block/block';
 import MainBar from '../components/mainBar/mainBar';
 import Content from '../components/content/content';
 
 export default class MainView{
+
+	/**
+	 * Creating main page view
+	 */
 	constructor(){
 		let bar = new MainBar();
 		let content1 = new Content();

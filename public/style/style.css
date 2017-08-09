@@ -1,0 +1,57 @@
+* {
+	font-family: 'Oswald', sans-serif;
+}
+
+.content-column__add-button{
+	background: #f6f5ae;
+	height: 2em;
+	position: relative;
+	width: .4em;
+}
+
+.content-column__add-button:after{
+	background: #f6f5ae;
+	content: "";
+	height: .4em;
+	left: -.8em;
+	position: absolute;
+	top: .8em;
+	width: 2em;
+}
+
+.content-column__add-button:hover{
+	filter: drop-shadow(.2em .2em .1em #f24236);
+}
+
+@keyframes group_appear {
+	from {
+		margin-top: 15em;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes content_appear {
+	from {
+		max-height: 0;
+	}
+	to {
+		max-height: 30em;
+	}
+}
+
+@keyframes link_appear {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes content_disappear {
+	from{
+		max-height: 30em;
+	}
+	to {
+		max-height: 0;
+	}
+}

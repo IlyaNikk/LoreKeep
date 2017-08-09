@@ -1,16 +1,24 @@
 'use strict';
 
-import Block from "../block/block"
+import Block from '../block/block';
+import './linkInfo.css';
 
-export default class linkInfo extends Block{
-	constructor(){
+export default class linkInfo extends Block {
+
+	/**
+	 * Link constructor
+	 */
+	constructor() {
 		super('div', {});
 		this.get().classList.add('link');
 		this.get().classList.add('link_border');
 		this.setInfo();
 	}
 
-	setInfo(){
+	/**
+	 * Creating link with info
+	 */
+	setInfo() {
 		let title = new Block('p', {});
 		title.get().classList.add('link__title');
 		let description = new Block('p', {});
@@ -24,8 +32,5 @@ export default class linkInfo extends Block{
 		this.get().appendChild(description.get());
 		this.get().appendChild(link.get());
 	}
-
-	getLinkInfo(){
-		return this.get();
-	}
 }
+
